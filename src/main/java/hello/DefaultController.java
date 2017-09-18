@@ -24,7 +24,7 @@ public class DefaultController {
     }
 
     @RequestMapping("/customers")
-    public Iterable<Customer> home() {
+    public Iterable<Customer> customers() {
         return repository.findAll();
     }
 
