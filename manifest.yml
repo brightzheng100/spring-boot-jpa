@@ -1,0 +1,6 @@
+---
+applications:
+- name: spring-boot-jpa
+  memory: 1G
+  host: spring-boot-jpa
+  path: target/spring-boot-jpa-1.0.0.jar
