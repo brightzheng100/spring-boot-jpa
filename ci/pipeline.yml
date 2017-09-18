@@ -18,13 +18,11 @@ jobs:
     file: source-code/ci/tasks/deploy.yml
     params:
       # Normal parameters
-      CF_API: {{pcf-api}}
-      CF_ORG: {{pcf-org}}
-      CF_SPACE: {{pcf-space}}
+      CF_API: ((pcf-api))
+      CF_ORG: ((pcf-org))
+      CF_SPACE: ((pcf-space))
 
       # Vault-managed paramaters
-      #CF_USER: {{pcf-username}}
-      #CF_PASSWD: {{pcf-password}}
       CF_USER: ((pcf-username))
       CF_PASSWD: ((pcf-password))
 
