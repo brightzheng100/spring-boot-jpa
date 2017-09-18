@@ -1,0 +1,29 @@
+---
+resources:
+- name: source-code
+  type: git
+  source:
+    uri: https://github.com/brightzheng100/spring-boot-jpa
+    branch: master
+
+jobs:
+- name: deployment
+  max_in_flight: 1
+  plan:
+  - get: source-code
+    trigger: true
+  - task: build
+    file: source-code/ci/tasks/build.yml
+  - task: deploy-to-pcf
+    file: source-code/ci/tasks/deploy.yml
+    params:
+      CF_API: {{pcf-api}}
+      CF_USER: {{pcf-username}}
+      CF_PASSWD: {{pcf-password}}
+      CF_ORG: {{pcf-org}}
+      CF_SPACE: {{pcf-space}}
+      CURRENT_APP_NAME: spring-boot-jpa
+      ARTIFACT_PATH: artifact/spring-boot-jpa.jar
+      MANIFEST: source-code/manifest.yml
+      HOST_NAME: spring-boot-jpa
+      CF_DOMAIN: cfapps.io

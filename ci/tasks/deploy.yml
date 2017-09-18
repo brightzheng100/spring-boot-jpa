@@ -1,0 +1,22 @@
+---
+platform: linux
+image_resource:
+  type: docker-image
+  source:
+    repository: concourse/cf-resource
+    tag: latest
+inputs:
+- name: artifact
+- name: source-code
+run:
+  path: sh
+  args:
+  - -exc
+  - |
+    cf api ${CF_API} --skip-ssl-validation \
+    && cf login -u ${CF_USER} -p ${CF_PASSWD} -o ${CF_ORG} -s ${CF_SPACE} \
+    && cf rename ${CURRENT_APP_NAME} ${CURRENT_APP_NAME}-existing \
+    && cf push ${CURRENT_APP_NAME} -p ${ARTIFACT_PATH} -f ${MANIFEST} --no-start \
+    && cf start ${CURRENT_APP_NAME} \
+    && cf map-route ${CURRENT_APP_NAME} ${CF_DOMAIN} --hostname ${HOST_NAME} \
+    && cf delete -f ${CURRENT_APP_NAME}-existing
