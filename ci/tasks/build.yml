@@ -15,5 +15,5 @@ run:
   - -exc
   - |
     cd source-code \
-    && ./mvnw package \
+    && ./mvnw package -Dmaven.test.skip=true \
     && mv target/spring-boot-jpa*.jar ../artifact/spring-boot-jpa.jar
