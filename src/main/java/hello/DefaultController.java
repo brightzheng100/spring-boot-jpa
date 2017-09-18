@@ -19,6 +19,11 @@ public class DefaultController {
     private CustomerRepository repository;
 
     @RequestMapping("/")
+    public String home(){
+        return "It's home!";
+    }
+
+    @RequestMapping("/customers")
     public Iterable<Customer> home() {
         return repository.findAll();
     }
