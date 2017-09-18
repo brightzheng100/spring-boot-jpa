@@ -23,8 +23,10 @@ jobs:
       CF_SPACE: {{pcf-space}}
 
       # Vault-managed paramaters
-      CF_USER: {{pcf-username}}
-      CF_PASSWD: {{pcf-password}}
+      #CF_USER: {{pcf-username}}
+      #CF_PASSWD: {{pcf-password}}
+      CF_USER: ((pcf-username))
+      CF_PASSWD: ((pcf-password))
 
       CURRENT_APP_NAME: spring-boot-jpa
       ARTIFACT_PATH: artifact/spring-boot-jpa.jar
